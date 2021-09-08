@@ -1,0 +1,8 @@
+C:\Users\Silvina\source\repos\JMusik\JMusik.WebApi\obj\Debug\net5.0\JMusik.WebApi.csproj.AssemblyReference.cache
+C:\Users\Silvina\source\repos\JMusik\JMusik.WebApi\obj\Debug\net5.0\JMusik.WebApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Silvina\source\repos\JMusik\JMusik.WebApi\obj\Debug\net5.0\JMusik.WebApi.AssemblyInfoInputs.cache
+C:\Users\Silvina\source\repos\JMusik\JMusik.WebApi\obj\Debug\net5.0\JMusik.WebApi.AssemblyInfo.cs
+C:\Users\Silvina\source\repos\JMusik\JMusik.WebApi\obj\Debug\net5.0\JMusik.WebApi.csproj.CoreCompileInputs.cache
+C:\Users\Silvina\source\repos\JMusik\JMusik.WebApi\obj\Debug\net5.0\JMusik.WebApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Silvina\source\repos\JMusik\JMusik.WebApi\obj\Debug\net5.0\JMusik.WebApi.RazorAssemblyInfo.cache
+C:\Users\Silvina\source\repos\JMusik\JMusik.WebApi\obj\Debug\net5.0\JMusik.WebApi.RazorAssemblyInfo.cs

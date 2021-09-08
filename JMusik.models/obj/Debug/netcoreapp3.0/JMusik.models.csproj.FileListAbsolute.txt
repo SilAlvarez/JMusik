@@ -1,0 +1,9 @@
+C:\Users\Silvina\source\repos\JMusik\JMusik.Models\bin\Debug\netcoreapp3.0\JMusik.Models.deps.json
+C:\Users\Silvina\source\repos\JMusik\JMusik.Models\bin\Debug\netcoreapp3.0\JMusik.Models.dll
+C:\Users\Silvina\source\repos\JMusik\JMusik.Models\bin\Debug\netcoreapp3.0\JMusik.Models.pdb
+C:\Users\Silvina\source\repos\JMusik\JMusik.Models\obj\Debug\netcoreapp3.0\JMusik.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Silvina\source\repos\JMusik\JMusik.Models\obj\Debug\netcoreapp3.0\JMusik.Models.AssemblyInfoInputs.cache
+C:\Users\Silvina\source\repos\JMusik\JMusik.Models\obj\Debug\netcoreapp3.0\JMusik.Models.AssemblyInfo.cs
+C:\Users\Silvina\source\repos\JMusik\JMusik.Models\obj\Debug\netcoreapp3.0\JMusik.Models.csproj.CoreCompileInputs.cache
+C:\Users\Silvina\source\repos\JMusik\JMusik.Models\obj\Debug\netcoreapp3.0\JMusik.Models.dll
+C:\Users\Silvina\source\repos\JMusik\JMusik.Models\obj\Debug\netcoreapp3.0\JMusik.Models.pdb
