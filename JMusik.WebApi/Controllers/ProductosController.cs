@@ -1,43 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using JMusik.Data.Contratos;
+using JMusik.Dtos;
+using JMusik.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using JMusik.Data;
-using JMusik.Models;
-using JMusik.Data.Contratos;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace JMusik.WebApi.Controllers
 {
+    [Authorize (Roles="Administrador , Vendedor")]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductosController : ControllerBase
     {
 
         private IProductosRepositorio _productosRepositorio;
-        public ProductosController(IProductosRepositorio productosRepositorio)
+        private readonly IMapper _mapper;
+        private readonly ILogger<ProductosController> _logger;
+
+        public ProductosController(IProductosRepositorio productosRepositorio,IMapper mapper,
+            ILogger<ProductosController> logger)
         {
 
             _productosRepositorio = productosRepositorio;
+            this._mapper = mapper;
+            this._logger = logger;
         }
 
         // GET: api/Productos
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<Producto>>> Get()
+        public async Task<ActionResult<IEnumerable<ProductoDto>>> Get()
         {
             try
             {
 
-                return await _productosRepositorio.ObtenerProductosAsync();
+                var productos= await _productosRepositorio.ObtenerProductosAsync();
+                return _mapper.Map<List<ProductoDto>>(productos);
             }
 
             catch (Exception ex)
 
             {
+                _logger.LogError($"Error en {nameof(Get)}: ${ex.Message}");
                 return BadRequest();
 
             }
@@ -51,7 +61,7 @@ namespace JMusik.WebApi.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Producto>> Get(int id)
+        public async Task<ActionResult<ProductoDto>> Get(int id)
         {
             var producto = await _productosRepositorio.ObtenerProductoAsync(id);
 
@@ -60,7 +70,7 @@ namespace JMusik.WebApi.Controllers
                 return NotFound();
             }
 
-            return producto;
+            return _mapper.Map<ProductoDto>(producto);
         }
 
 
@@ -70,21 +80,27 @@ namespace JMusik.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Producto>> Post(Producto producto)
+        public async Task<ActionResult<ProductoDto>> Post(ProductoDto productoDto)
         {
 
             try
             {
+
+                var producto= _mapper.Map<Producto>(productoDto);
                 var nuevoProducto = await _productosRepositorio.Agregar(producto);
                 if (nuevoProducto == null)
                 {
                     return BadRequest();
                 }
-                CreatedAtAction(nameof(Post), new { id = nuevoProducto.Id }, producto);
-                return producto;
+
+
+                var nuevoProductoDto = _mapper.Map<ProductoDto>(nuevoProducto);
+                return CreatedAtAction(nameof(Post), new { id = nuevoProductoDto.Id }, nuevoProductoDto);
+                
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Error {nameof(Post)}: ${ex.Message}");
                 return BadRequest();
 
             }
@@ -97,19 +113,21 @@ namespace JMusik.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Put(int id, [FromBody] Producto producto)
+        public async Task<ActionResult<ProductoDto>> Put(int id, [FromBody] ProductoDto productoDto)
 
         {
 
-            if (producto == null)
+            if (productoDto == null)
             {
                 return NotFound();
             }
+
+            var producto = _mapper.Map<Producto>(productoDto);
             var resultado = await _productosRepositorio.Actualizar(producto);
             if (!resultado)
                 return BadRequest();
 
-            return (IActionResult)producto;
+            return productoDto; 
 
 
             //    
@@ -133,7 +151,7 @@ namespace JMusik.WebApi.Controllers
             }
             catch (Exception ex)
             {
-
+                _logger.LogError($"Error en {nameof(Delete)}: ${ex.Message}");
                 return BadRequest(); ;
             }
 

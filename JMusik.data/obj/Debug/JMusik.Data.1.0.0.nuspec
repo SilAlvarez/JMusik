@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>JMusik.Data</id>
+    <version>1.0.0</version>
+    <authors>JMusik.Data</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp3.0">
+        <dependency id="JMusik.Models" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.SqlServer" version="3.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Silvina\source\repos\JMusik\JMusik.Data\bin\Debug\netcoreapp3.0\JMusik.Data.runtimeconfig.json" target="lib\netcoreapp3.0\JMusik.Data.runtimeconfig.json" />
+    <file src="C:\Users\Silvina\source\repos\JMusik\JMusik.Data\bin\Debug\netcoreapp3.0\JMusik.Data.dll" target="lib\netcoreapp3.0\JMusik.Data.dll" />
+  </files>
+</package>
