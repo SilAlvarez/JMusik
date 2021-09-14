@@ -9,6 +9,8 @@ namespace JMusik.Data.Contratos
     public interface IProductosRepositorio
     {
         Task<List<Producto>> ObtenerProductosAsync();
+        Task <(int totalRegistros,IEnumerable<Producto> registros)> ObtenerPaginasProductosAsync(
+            int PaginaActual, int registrosPorPagina);
         Task<Producto> ObtenerProductoAsync(int id);
         Task<Producto> Agregar(Producto producto);
         Task<bool> Actualizar(Producto producto);

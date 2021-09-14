@@ -2,6 +2,7 @@
 using JMusik.Data.Contratos;
 using JMusik.Dtos;
 using JMusik.Models;
+using JMusik.WebApi.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ namespace JMusik.WebApi.Controllers
     [Authorize (Roles="Administrador , Vendedor")]
     [Route("api/[controller]")]
     [ApiController]
+    
     public class ProductosController : ControllerBase
     {
 
@@ -35,13 +37,21 @@ namespace JMusik.WebApi.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<ProductoDto>>> Get()
+        public async Task<ActionResult<Paginador<ProductoDto>>> Get(int paginaActual = 1, int registrosPorPagina = 3)
         {
             try
             {
 
-                var productos= await _productosRepositorio.ObtenerProductosAsync();
-                return _mapper.Map<List<ProductoDto>>(productos);
+                var resultado = await _productosRepositorio.ObtenerPaginasProductosAsync(paginaActual,registrosPorPagina);
+
+                var listaProductosDto= _mapper.Map<List<ProductoDto>>(resultado.registros);
+
+
+                return new Paginador<ProductoDto>(listaProductosDto, resultado.totalRegistros, paginaActual, registrosPorPagina);
+
+
+               // var productos = await _productosRepositorio.ObtenerProductosAsync();
+               // return _mapper.Map < List < ProductoDto>> (productos);
             }
 
             catch (Exception ex)

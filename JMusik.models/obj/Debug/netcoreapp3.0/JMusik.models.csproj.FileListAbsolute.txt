@@ -7,3 +7,4 @@ C:\Users\Silvina\source\repos\JMusik\JMusik.Models\obj\Debug\netcoreapp3.0\JMusi
 C:\Users\Silvina\source\repos\JMusik\JMusik.Models\obj\Debug\netcoreapp3.0\JMusik.Models.csproj.CoreCompileInputs.cache
 C:\Users\Silvina\source\repos\JMusik\JMusik.Models\obj\Debug\netcoreapp3.0\JMusik.Models.dll
 C:\Users\Silvina\source\repos\JMusik\JMusik.Models\obj\Debug\netcoreapp3.0\JMusik.Models.pdb
+C:\Users\Silvina\source\repos\JMusik\JMusik.Models\obj\Debug\netcoreapp3.0\JMusik.Models.csproj.AssemblyReference.cache
